@@ -12,15 +12,16 @@ import util.StringUtil;
 
 public class AttendanceDao extends BaseDao {
     public boolean addAttendance(Attendance attendance) {
-        String sql = "INSERT INTO 考勤管理表 (学生学号, 是否缺勤, 缺勤原因, 是否请假, 请假原因, 考勤时间) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO 考勤管理表 (考勤ID, 学生学号, 是否缺勤, 缺勤原因, 是否请假, 请假原因, 考勤时间) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, attendance.getStudentId());
-            pstmt.setString(2, attendance.getIsAbsent());
-            pstmt.setString(3, attendance.getAbsenceReason());
-            pstmt.setString(4, attendance.getIsLeave());
-            pstmt.setString(5, attendance.getLeaveReason());
-            pstmt.setDate(6, new java.sql.Date(attendance.getAttendanceDate().getTime()));
+            pstmt.setInt(1, attendance.getAttendanceId());
+            pstmt.setInt(2, attendance.getStudentId());
+            pstmt.setString(3, attendance.getIsAbsent());
+            pstmt.setString(4, attendance.getAbsenceReason());
+            pstmt.setString(5, attendance.getIsLeave());
+            pstmt.setString(6, attendance.getLeaveReason());
+            pstmt.setDate(7, new java.sql.Date(attendance.getAttendanceDate().getTime()));
 
             int rowsAffected = pstmt.executeUpdate();
             pstmt.close();
@@ -32,8 +33,8 @@ public class AttendanceDao extends BaseDao {
             // 插入失败
             return false;
         }
-
     }
+
 
     public List<Attendance> getAttendanceList(Attendance attendance) {
         List<Attendance> attendanceList = new ArrayList<>();
