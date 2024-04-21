@@ -12,12 +12,13 @@ public class WorkPlanDao extends BaseDao {
 
     // 添加工作计划记录
     public boolean addWorkPlan(WorkPlan workPlan) {
-        String sql = "INSERT INTO 工作计划表 (计划内容, 计划时间, 教师编号) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO 工作计划表 (计划ID, 计划内容, 计划时间, 教师编号) VALUES (?, ?, ?, ?)";
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, workPlan.getPlanContent());
-            pstmt.setString(2, workPlan.getPlanTime());
-            pstmt.setInt(3, workPlan.getTeacherId());
+            pstmt.setInt(1, workPlan.getPlanId()); // 设置计划ID
+            pstmt.setString(2, workPlan.getPlanContent());
+            pstmt.setString(3, workPlan.getPlanTime());
+            pstmt.setInt(4, workPlan.getTeacherId());
 
             int rowsAffected = pstmt.executeUpdate();
             pstmt.close();
@@ -30,6 +31,7 @@ public class WorkPlanDao extends BaseDao {
             return false;
         }
     }
+
 
     // 获取工作计划列表
     public List<WorkPlan> getWorkPlanList(WorkPlan workPlan) {
