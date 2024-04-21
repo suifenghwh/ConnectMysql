@@ -14,26 +14,24 @@ import util.StringUtil;
 public class WorkSummaryManagerFrm extends JInternalFrame {
 
     private JPanel contentPane;
-    private JTextField searchByTeacherIdTextField;
+    private JTextField searchByContentTextField;
     private JTable workSummaryListTable;
-    private JTextField editSummaryIdTextField;
     private JTextField editSummaryContentTextField;
     private JTextField editSummaryTimeTextField;
-    private JTextField editTeacherIdTextField;
 
     public WorkSummaryManagerFrm() {
         setClosable(true);
         setIconifiable(true);
         setTitle("工作总结管理");
-        setBounds(20, 20, 744, 800);
+        setBounds(100, 100, 744, 750);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
 
-        JLabel lblNewLabel = new JLabel("教师编号:");
+        JLabel lblNewLabel = new JLabel("总结内容:");
 
-        searchByTeacherIdTextField = new JTextField();
-        searchByTeacherIdTextField.setColumns(10);
+        searchByContentTextField = new JTextField();
+        searchByContentTextField.setColumns(10);
 
         JButton searchButton = new JButton("查询");
         searchButton.addActionListener(new ActionListener() {
@@ -43,11 +41,6 @@ public class WorkSummaryManagerFrm extends JInternalFrame {
         });
 
         JScrollPane scrollPane = new JScrollPane();
-
-        JLabel lblNewLabel_1 = new JLabel("总结ID:");
-
-        editSummaryIdTextField = new JTextField();
-        editSummaryIdTextField.setColumns(10);
 
         JLabel lblNewLabel_2 = new JLabel("总结内容:");
 
@@ -59,22 +52,10 @@ public class WorkSummaryManagerFrm extends JInternalFrame {
         editSummaryTimeTextField = new JTextField();
         editSummaryTimeTextField.setColumns(10);
 
-        JLabel lblNewLabel_4 = new JLabel("教师编号:");
-
-        editTeacherIdTextField = new JTextField();
-        editTeacherIdTextField.setColumns(10);
-
         JButton submitButton = new JButton("确认修改");
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 submitWorkSummary(e);
-            }
-        });
-
-        JButton deleteButton = new JButton("删除工作总结");
-        deleteButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                deleteWorkSummary(e);
             }
         });
 
@@ -86,39 +67,27 @@ public class WorkSummaryManagerFrm extends JInternalFrame {
                                 .addGroup(gl_contentPane.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addGroup(gl_contentPane.createSequentialGroup()
                                                 .addComponent(lblNewLabel)
-                                                .addGap(31)
-                                                .addComponent(searchByTeacherIdTextField, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 210, Short.MAX_VALUE)
+                                                .addGap(18)
+                                                .addComponent(searchByContentTextField, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 230, Short.MAX_VALUE)
                                                 .addComponent(searchButton))
                                         .addGroup(gl_contentPane.createSequentialGroup()
                                                 .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 513, GroupLayout.PREFERRED_SIZE)
                                                 .addContainerGap())))
                         .addGroup(gl_contentPane.createSequentialGroup()
+                                .addGap(132)
                                 .addGroup(gl_contentPane.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addGroup(gl_contentPane.createSequentialGroup()
-                                                .addGap(132)
-                                                .addGroup(gl_contentPane.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                                .addComponent(lblNewLabel_1)
-                                                                .addGap(18)
-                                                                .addComponent(editSummaryIdTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                                .addComponent(lblNewLabel_2)
-                                                                .addGap(18)
-                                                                .addComponent(editSummaryContentTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                                .addComponent(lblNewLabel_3)
-                                                                .addGap(18)
-                                                                .addComponent(editSummaryTimeTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                                .addComponent(lblNewLabel_4)
-                                                                .addGap(18)
-                                                                .addComponent(editTeacherIdTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+                                                .addComponent(lblNewLabel_3)
+                                                .addGap(18)
+                                                .addComponent(editSummaryTimeTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(gl_contentPane.createSequentialGroup()
+                                                .addComponent(lblNewLabel_2)
+                                                .addGap(18)
+                                                .addComponent(editSummaryContentTextField, GroupLayout.PREFERRED_SIZE, 215, GroupLayout.PREFERRED_SIZE))
                                         .addGroup(gl_contentPane.createSequentialGroup()
                                                 .addGap(195)
-                                                .addComponent(submitButton)
-                                                .addGap(39)
-                                                .addComponent(deleteButton)))
+                                                .addComponent(submitButton)))
                                 .addContainerGap(251, Short.MAX_VALUE))
         );
         gl_contentPane.setVerticalGroup(
@@ -127,14 +96,10 @@ public class WorkSummaryManagerFrm extends JInternalFrame {
                                 .addGap(39)
                                 .addGroup(gl_contentPane.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(lblNewLabel)
-                                        .addComponent(searchByTeacherIdTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(searchByContentTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(searchButton))
                                 .addGap(46)
                                 .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 329, GroupLayout.PREFERRED_SIZE)
-                                .addGap(37)
-                                .addGroup(gl_contentPane.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(lblNewLabel_1)
-                                        .addComponent(editSummaryIdTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                 .addGap(18)
                                 .addGroup(gl_contentPane.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(lblNewLabel_2)
@@ -143,14 +108,9 @@ public class WorkSummaryManagerFrm extends JInternalFrame {
                                 .addGroup(gl_contentPane.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(lblNewLabel_3)
                                         .addComponent(editSummaryTimeTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(18)
-                                .addGroup(gl_contentPane.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(lblNewLabel_4)
-                                        .addComponent(editTeacherIdTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                 .addGap(32)
                                 .addGroup(gl_contentPane.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(submitButton)
-                                        .addComponent(deleteButton))
+                                        .addComponent(submitButton))
                                 .addContainerGap(55, Short.MAX_VALUE))
         );
 
@@ -172,75 +132,63 @@ public class WorkSummaryManagerFrm extends JInternalFrame {
         scrollPane.setViewportView(workSummaryListTable);
         contentPane.setLayout(gl_contentPane);
         setTable(new WorkSummary(0, "", "", 0)); // 或者使用默认值
+
+        // 添加鼠标点击事件监听器，用于将选中行的数据显示在编辑框中
+        workSummaryListTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int row = workSummaryListTable.rowAtPoint(evt.getPoint());
+                editSummaryContentTextField.setText(workSummaryListTable.getValueAt(row, 1).toString());
+                editSummaryTimeTextField.setText(workSummaryListTable.getValueAt(row, 2).toString());
+            }
+        });
     }
 
     protected void submitWorkSummary(ActionEvent e) {
         int row = workSummaryListTable.getSelectedRow();
         if (row == -1) {
-            JOptionPane.showMessageDialog(this, "请选择要修改的工作总结");
+            JOptionPane.showMessageDialog(this, "请选择要修改的工作总结记录");
             return;
         }
 
-        WorkSummary summary = new WorkSummary(0, "", "", 0);
-        summary.setSummaryId(Integer.parseInt(editSummaryIdTextField.getText()));
-        summary.setSummaryContent(editSummaryContentTextField.getText());
-        summary.setSummaryTime(editSummaryTimeTextField.getText());
-        summary.setTeacherId(Integer.parseInt(editTeacherIdTextField.getText()));
+        WorkSummary workSummary = new WorkSummary(0, "", "", 0);
+        workSummary.setSummaryId(Integer.parseInt(workSummaryListTable.getValueAt(row, 0).toString()));
+        workSummary.setSummaryContent(editSummaryContentTextField.getText());
+        workSummary.setSummaryTime(editSummaryTimeTextField.getText());
 
-        WorkSummaryDao summaryDao = new WorkSummaryDao();
-        if (summaryDao.updateWorkSummary(summary)) {
-            JOptionPane.showMessageDialog(this, "工作总结修改成功");
-            setTable(new WorkSummary(0, "", "", 0));
+        // 更新数据库中的工作总结信息
+        WorkSummaryDao workSummaryDao = new WorkSummaryDao();
+        if (workSummaryDao.updateWorkSummary(workSummary)) {
+            JOptionPane.showMessageDialog(this, "工作总结记录修改成功");
+            setTable(new WorkSummary(0, "", "", 0)); // 更新工作总结记录列表显示
         } else {
-            JOptionPane.showMessageDialog(this, "工作总结修改失败");
-        }
-    }
-
-    protected void deleteWorkSummary(ActionEvent e) {
-        int row = workSummaryListTable.getSelectedRow();
-        if (row == -1) {
-            JOptionPane.showMessageDialog(this, "请选择要删除的工作总结");
-            return;
-        }
-
-        int summaryId = Integer.parseInt(editSummaryIdTextField.getText());
-        int option = JOptionPane.showConfirmDialog(this, "确定删除该工作总结吗?");
-        if (option == JOptionPane.OK_OPTION) {
-            WorkSummaryDao summaryDao = new WorkSummaryDao();
-            if (summaryDao.deleteWorkSummary(summaryId)) {
-                JOptionPane.showMessageDialog(this, "工作总结删除成功");
-                setTable(new WorkSummary(0, "", "", 0));
-            } else {
-                JOptionPane.showMessageDialog(this, "工作总结删除失败");
-            }
+            JOptionPane.showMessageDialog(this, "工作总结记录修改失败");
         }
     }
 
     protected void searchWorkSummary(ActionEvent e) {
-        String teacherIdText = searchByTeacherIdTextField.getText().trim();
-        if (StringUtil.ifEmpty(teacherIdText)) {
-            JOptionPane.showMessageDialog(this, "请输入教师编号进行查询");
+        String content = searchByContentTextField.getText().trim();
+        if (StringUtil.ifEmpty(content)) {
+            JOptionPane.showMessageDialog(this, "请输入总结内容进行查询");
             return;
         }
 
-        int teacherId = Integer.parseInt(teacherIdText);
-        WorkSummary searchCriteria = new WorkSummary(0, "", "", teacherId);
+        WorkSummary searchCriteria = new WorkSummary(0, content, "", 0);
 
         setTable(searchCriteria);
     }
 
     private void setTable(WorkSummary criteria) {
         DefaultTableModel model = (DefaultTableModel) workSummaryListTable.getModel();
-        model.setRowCount(0);
+        model.setRowCount(0); // 清空表格数据
 
-        WorkSummaryDao summaryDao = new WorkSummaryDao();
-        List<WorkSummary> summaryList = summaryDao.getWorkSummaryList(criteria);
-        for (WorkSummary summary : summaryList) {
+        WorkSummaryDao workSummaryDao = new WorkSummaryDao();
+        List<WorkSummary> workSummaryList = workSummaryDao.getWorkSummaryList(criteria);
+        for (WorkSummary workSummary : workSummaryList) {
             model.addRow(new Object[] {
-                    summary.getSummaryId(),
-                    summary.getSummaryContent(),
-                    summary.getSummaryTime(),
-                    summary.getTeacherId()
+                    workSummary.getSummaryId(),
+                    workSummary.getSummaryContent(),
+                    workSummary.getSummaryTime(),
+                    workSummary.getTeacherId()
             });
         }
     }
