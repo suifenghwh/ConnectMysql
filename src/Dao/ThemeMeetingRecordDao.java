@@ -10,12 +10,13 @@ import model.ThemeMeetingRecord;
 
 public class ThemeMeetingRecordDao extends BaseDao {
     public boolean addThemeMeetingRecord(ThemeMeetingRecord record) {
-        String sql = "INSERT INTO 主题班会记录表 (会议主题, 会议时间, 教师编号) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO 主题班会记录表 (班会ID, 会议主题, 会议时间, 教师编号) VALUES (?, ?, ?, ?)";
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, record.getMeetingTheme());
-            pstmt.setString(2, record.getMeetingTime());
-            pstmt.setInt(3, record.getTeacherId());
+            pstmt.setInt(1, record.getMeetingId()); // 设置班会ID
+            pstmt.setString(2, record.getMeetingTheme());
+            pstmt.setString(3, record.getMeetingTime());
+            pstmt.setInt(4, record.getTeacherId());
 
             int rowsAffected = pstmt.executeUpdate();
             pstmt.close();
@@ -28,6 +29,7 @@ public class ThemeMeetingRecordDao extends BaseDao {
             return false;
         }
     }
+
 
     public List<ThemeMeetingRecord> getMeetingRecords(ThemeMeetingRecord searchCriteria) {
         List<ThemeMeetingRecord> recordList = new ArrayList<>();
