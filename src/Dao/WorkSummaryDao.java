@@ -11,12 +11,14 @@ import model.WorkSummary;
 public class WorkSummaryDao extends BaseDao {
 
     public boolean addWorkSummary(WorkSummary summary) {
-        String sql = "INSERT INTO 工作总结表 (总结内容, 总结时间, 教师编号) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO 工作总结表 (总结ID, 总结内容, 总结时间, 教师编号) VALUES (?, ?, ?, ?)";
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, summary.getSummaryContent());
-            pstmt.setString(2, summary.getSummaryTime());
-            pstmt.setInt(3, summary.getTeacherId());
+            pstmt.setInt(1, summary.getSummaryId()); // 设置总结ID
+            pstmt.setString(2, summary.getSummaryContent());
+            pstmt.setString(3, summary.getSummaryTime());
+            pstmt.setInt(4, summary.getTeacherId());
+
             int rowsAffected = pstmt.executeUpdate();
             pstmt.close();
             return rowsAffected > 0;
