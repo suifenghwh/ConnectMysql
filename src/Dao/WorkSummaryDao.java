@@ -30,15 +30,11 @@ public class WorkSummaryDao extends BaseDao {
 
     public List<WorkSummary> getWorkSummaryList(WorkSummary criteria) {
         List<WorkSummary> summaryList = new ArrayList<>();
-        StringBuilder sql = new StringBuilder("SELECT * FROM 工作总结表 WHERE 1 = 1");
-
-        if (criteria.getTeacherId() != 0) {
-            sql.append(" AND 教师编号 = ").append(criteria.getTeacherId());
-        }
-        // 添加其他查询条件
+        String sql = "SELECT * FROM 工作总结表 WHERE 总结内容 LIKE ?";
 
         try {
-            PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, "%" + criteria.getSummaryContent() + "%");
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 int summaryId = rs.getInt("总结ID");
@@ -56,6 +52,7 @@ public class WorkSummaryDao extends BaseDao {
         }
         return summaryList;
     }
+
 
     public boolean updateWorkSummary(WorkSummary summary) {
         String sql = "UPDATE 工作总结表 SET 总结内容 = ?, 总结时间 = ? WHERE 总结ID = ?";
