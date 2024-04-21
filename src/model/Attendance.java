@@ -3,7 +3,7 @@ package model;
 import java.sql.Date;
 
 public class Attendance {//考勤管理表
-    private int attendanceId; // 考勤记录ID
+    private int attendanceId; // 考勤ID
     private int studentId; // 学生学号
     private String isAbsent; // 是否缺勤
     private String absenceReason; // 缺勤原因
