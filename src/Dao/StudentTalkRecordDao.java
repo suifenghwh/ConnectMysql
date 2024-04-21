@@ -11,12 +11,13 @@ import model.StudentTalkRecord;
 public class StudentTalkRecordDao extends BaseDao {
 
     public boolean addStudentTalkRecord(StudentTalkRecord record) {
-        String sql = "INSERT INTO 学生谈话记录表 (学生学号, 谈话内容, 谈话时间) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO 学生谈话记录表 (谈话ID, 学生学号, 谈话内容, 谈话时间) VALUES (?, ?, ?, ?)";
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, record.getStudentId());
-            pstmt.setString(2, record.getTalkContent());
-            pstmt.setString(3, record.getTalkTime());
+            pstmt.setInt(1, record.getTalkId()); // 设置谈话ID
+            pstmt.setInt(2, record.getStudentId());
+            pstmt.setString(3, record.getTalkContent());
+            pstmt.setString(4, record.getTalkTime());
 
             int rowsAffected = pstmt.executeUpdate();
             pstmt.close();
@@ -27,6 +28,7 @@ public class StudentTalkRecordDao extends BaseDao {
             return false;
         }
     }
+
 
     public List<StudentTalkRecord> getTalkRecords(StudentTalkRecord criteria) {
         List<StudentTalkRecord> recordList = new ArrayList<>();
