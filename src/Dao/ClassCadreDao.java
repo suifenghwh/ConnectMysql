@@ -12,14 +12,15 @@ import util.StringUtil;
 
 public class ClassCadreDao extends BaseDao {
     public boolean addClassCadre(ClassCadre classCadre) {
-        String sql = "INSERT INTO 班干部管理表 (学生学号, 职务, 职责, 开始时间, 结束时间) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO 班干部管理表 (干部ID, 学生学号, 职务, 职责, 开始时间, 结束时间) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, classCadre.getStudentId());
-            pstmt.setString(2, classCadre.getPosition());
-            pstmt.setString(3, classCadre.getResponsibilities());
-            pstmt.setDate(4, new java.sql.Date(classCadre.getStartDate().getTime()));
-            pstmt.setDate(5, new java.sql.Date(classCadre.getEndDate().getTime()));
+            pstmt.setInt(1, classCadre.getCadreId()); // 设置干部ID
+            pstmt.setInt(2, classCadre.getStudentId());
+            pstmt.setString(3, classCadre.getPosition());
+            pstmt.setString(4, classCadre.getResponsibilities());
+            pstmt.setDate(5, new java.sql.Date(classCadre.getStartDate().getTime()));
+            pstmt.setDate(6, new java.sql.Date(classCadre.getEndDate().getTime()));
 
             int rowsAffected = pstmt.executeUpdate();
             pstmt.close();
@@ -31,8 +32,8 @@ public class ClassCadreDao extends BaseDao {
             // 插入失败
             return false;
         }
-
     }
+
 
     public List<ClassCadre> getClassCadreList(ClassCadre classCadre) {
         List<ClassCadre> classCadreList = new ArrayList<>();
