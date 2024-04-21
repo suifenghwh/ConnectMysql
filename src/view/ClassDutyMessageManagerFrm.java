@@ -48,11 +48,13 @@ public class ClassDutyMessageManagerFrm extends JInternalFrame {
 
         editDutyIDTextField = new JTextField();
         editDutyIDTextField.setColumns(10);
+        editDutyIDTextField.setEditable(false);
 
         JLabel lblNewLabel_2 = new JLabel("学生学号:");
 
         editStudentIDTextField = new JTextField();
         editStudentIDTextField.setColumns(10);
+        editStudentIDTextField.setEditable(false);
 
         JLabel lblNewLabel_3 = new JLabel("值日地点:");
 

@@ -60,6 +60,7 @@ public class StudentCommentManagerFrm extends JInternalFrame {
 
         editCommentIDtextField = new JTextField();
         editCommentIDtextField.setColumns(10);
+        editCommentIDtextField.setEditable(false);
 
         JButton submitCommentButton = new JButton("确认修改");
         submitCommentButton.addActionListener(new ActionListener() {

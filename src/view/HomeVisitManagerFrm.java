@@ -66,6 +66,7 @@ public class HomeVisitManagerFrm extends JInternalFrame {
 
         editHomeVisitIDTextField = new JTextField();
         editHomeVisitIDTextField.setColumns(10);
+        editHomeVisitIDTextField.setEditable(false);
 
         JButton submitButton = new JButton("确认修改");
         submitButton.addActionListener(new ActionListener() {

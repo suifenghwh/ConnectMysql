@@ -50,6 +50,7 @@ public class ClassCadreManagerFrm extends JInternalFrame {
 
         editCadreIDTextField = new JTextField();
         editCadreIDTextField.setColumns(10);
+        editCadreIDTextField.setEditable(false);
 
         JLabel lblNewLabel_2 = new JLabel("学生学号:");
 

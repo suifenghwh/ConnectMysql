@@ -2,33 +2,25 @@ package view;
 
 import java.awt.EventQueue;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JTextField;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 import Dao.CourseDao;
 import Dao.ScoreDao;
 import model.ClassCourse;
-import model.Score;
-
-import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.event.ActionListener;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.awt.event.ActionEvent;
 
 public class StatsScoreFrm extends JInternalFrame {
     private JTextField minScoretextField;
@@ -36,46 +28,26 @@ public class StatsScoreFrm extends JInternalFrame {
     private JTextField avgScoretextField;
     private JTextField totalScoretextField;
     private JTextField StudentIDtextField;
-    private JComboBox CourseNamecomboBox;
+    private JComboBox<String> CourseNamecomboBox;
     private List<ClassCourse> courseList = new ArrayList<>();
-    private List<Score> viewScoreList = new ArrayList<>();
 
-    /**
-     * Launch the application.
-     */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					StatsScoreFrm frame = new StatsScoreFrm();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
-    /**
-     * Create the frame.
-     */
     public StatsScoreFrm() {
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("\u6210\u7EE9\u7EDF\u8BA1\u754C\u9762");
+        setTitle("成绩统计界面");
         setBounds(100, 100, 717, 586);
 
-        JLabel lblNewLabel = new JLabel("\u8BFE\u7A0B\u540D\u79F0");
+        JLabel lblNewLabel = new JLabel("课程名称");
 
-        CourseNamecomboBox = new JComboBox();
+        CourseNamecomboBox = new JComboBox<String>();
         CourseNamecomboBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-//		 		searchCourseStats();
+//                searchCourseStats();
             }
         });
 
-        JButton SearchButton = new JButton("\u67E5\u8BE2");
+        JButton SearchButton = new JButton("查询");
         SearchButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 searchStatsAct(e);
@@ -83,15 +55,15 @@ public class StatsScoreFrm extends JInternalFrame {
         });
 
         JPanel viewPanel = new JPanel();
-        viewPanel.setBorder(new TitledBorder(null, "\u6210\u7EE9\u7EDF\u8BA1\u4FE1\u606F", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+        viewPanel.setBorder(new TitledBorder(null, "成绩统计信息", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
-        JLabel lblNewLabel_5 = new JLabel("\u5B66\u751F\u5B66\u53F7");
+        JLabel lblNewLabel_5 = new JLabel("学生学号");
 
         StudentIDtextField = new JTextField();
         StudentIDtextField.setColumns(10);
 
         JPanel panel_1 = new JPanel();
-        panel_1.setBorder(new TitledBorder(null, "\u5207\u6362\u663E\u793A\u65B9\u5F0F", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+        panel_1.setBorder(new TitledBorder(null, "切换显示方式", TitledBorder.LEADING, TitledBorder.TOP, null, null));
         GroupLayout groupLayout = new GroupLayout(getContentPane());
         groupLayout.setHorizontalGroup(
                 groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -133,21 +105,21 @@ public class StatsScoreFrm extends JInternalFrame {
                                 .addContainerGap(57, Short.MAX_VALUE))
         );
 
-        JButton defaultViewButton = new JButton("\u9ED8\u8BA4\u663E\u793A");
+        JButton defaultViewButton = new JButton("默认显示");
         defaultViewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 defaultViewAct(e);
             }
         });
 
-        JButton barViewButton = new JButton("\u67F1\u72B6\u56FE\u663E\u793A");
+        JButton barViewButton = new JButton("柱状图显示");
         barViewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 barViewAct(e);
             }
         });
 
-        JButton pieViewButton = new JButton("\u997C\u72B6\u56FE\u663E\u793A");
+        JButton pieViewButton = new JButton("饼状图显示");
         pieViewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 peiViewAct(e);
@@ -177,13 +149,13 @@ public class StatsScoreFrm extends JInternalFrame {
         );
         panel_1.setLayout(gl_panel_1);
 
-        JLabel lblNewLabel_1 = new JLabel("\u603B\u5206");
+        JLabel lblNewLabel_1 = new JLabel("总分");
 
-        JLabel lblNewLabel_2 = new JLabel("\u5E73\u5747\u5206");
+        JLabel lblNewLabel_2 = new JLabel("平均分");
 
-        JLabel lblNewLabel_3 = new JLabel("\u6700\u9AD8\u5206");
+        JLabel lblNewLabel_3 = new JLabel("最高分");
 
-        JLabel lblNewLabel_4 = new JLabel("\u6700\u4F4E\u5206");
+        JLabel lblNewLabel_4 = new JLabel("最低分");
 
         minScoretextField = new JTextField();
         minScoretextField.setEditable(false);
@@ -256,7 +228,7 @@ public class StatsScoreFrm extends JInternalFrame {
         // TODO Auto-generated method stub
 
     }
-    //	private void searchCourseStats() {
+    //    private void searchCourseStats() {
 //        // 获取选择的课程名称
 //        String selectedCourse = (String) CourseNamecomboBox.getSelectedItem();
 //        // 查询该课程下的最高分和最低分
@@ -265,7 +237,7 @@ public class StatsScoreFrm extends JInternalFrame {
 //        // 更新界面显示
 //        updateStatsView(stats);
 //    }
-//	private void updateStatsView(Map<String, Integer> stats) {
+//    private void updateStatsView(Map<String, Integer> stats) {
 //        if (stats != null) {
 //            // 更新界面上的最高分和最低分文本框
 //            if (stats.containsKey("max_score")) {
@@ -275,15 +247,14 @@ public class StatsScoreFrm extends JInternalFrame {
 //                minScoretextField.setText(String.valueOf(stats.get("min_score")));
 //            }
 //        }
-//	}
+//    }
     protected void searchStatsAct(ActionEvent e) {
         // TODO Auto-generated method stub
         ScoreDao scoreDao = new ScoreDao();
-//		Score score = new Score();
 
         int StudentID = Integer.parseInt(StudentIDtextField.getText().toString());
         resetText();
-//		viewScoreList=scoreDao.getScoreList(score);
+
         Map<String, String> statsInfo = scoreDao.getStatsInfo(StudentID);
         totalScoretextField.setText(statsInfo.get("total_score"));
         avgScoretextField.setText(statsInfo.get("average_score"));
@@ -302,5 +273,4 @@ public class StatsScoreFrm extends JInternalFrame {
     }
 
 }
-
 

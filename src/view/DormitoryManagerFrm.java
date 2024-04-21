@@ -47,6 +47,7 @@ public class DormitoryManagerFrm extends JInternalFrame {
         JLabel lblNewLabel_1 = new JLabel("宿舍ID:");
         editDormitoryIdTextField = new JTextField();
         editDormitoryIdTextField.setColumns(10);
+        editDormitoryIdTextField.setEditable(false);
 
         JLabel lblNewLabel_2 = new JLabel("宿舍号:");
 

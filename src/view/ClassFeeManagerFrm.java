@@ -51,11 +51,13 @@ public class ClassFeeManagerFrm extends JInternalFrame {
 
         editFeeIDTextField = new JTextField();
         editFeeIDTextField.setColumns(10);
+        editFeeIDTextField.setEditable(false);
 
         JLabel lblNewLabel_2 = new JLabel("学生学号:");
 
         editStudentIDTextField = new JTextField();
         editStudentIDTextField.setColumns(10);
+        editStudentIDTextField.setEditable(false);
 
         JLabel lblNewLabel_3 = new JLabel("缴费金额:");
 

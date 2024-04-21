@@ -1,31 +1,18 @@
 package view;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.Vector;
 
-import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.GroupLayout;
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JComboBox;
-import javax.swing.ButtonGroup;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JRadioButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import Dao.StudentDao;
 import model.StudentBaseInfo;
@@ -49,20 +36,20 @@ public class StudentManagerFrm extends JInternalFrame {
     public StudentManagerFrm() {
         setClosable(true);
         setIconifiable(true);
-        setTitle("\u5B66\u751F\u4FE1\u606F\u7BA1\u7406");
+        setTitle("学生信息管理");
         setBounds(100, 100, 744, 631);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
 
-        JLabel lblNewLabel = new JLabel("\u5B66\u751F\u59D3\u540D:");
+        JLabel lblNewLabel = new JLabel("学生姓名:");
 
-        JLabel lblNewLabel_1 = new JLabel("\u5B66\u751F\u5B66\u53F7:");
+        JLabel lblNewLabel_1 = new JLabel("学生学号:");
 
         SearchStudentByIDtextField = new JTextField();
         SearchStudentByIDtextField.setColumns(10);
 
-        JButton SearchButton = new JButton("\u67E5\u8BE2");
+        JButton SearchButton = new JButton("查询");
         SearchButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 searchStudent(e);
@@ -71,47 +58,47 @@ public class StudentManagerFrm extends JInternalFrame {
 
         JScrollPane scrollPane = new JScrollPane();
 
-        JLabel lblNewLabel_2 = new JLabel("\u5B66\u751F\u59D3\u540D:");
+        JLabel lblNewLabel_2 = new JLabel("学生姓名:");
 
         editStudentNametextField = new JTextField();
         editStudentNametextField.setColumns(10);
 
-        JLabel lblNewLabel_3 = new JLabel("\u5B66\u751F\u6027\u522B:");
+        JLabel lblNewLabel_3 = new JLabel("学生性别:");
 
-        editStudentSexManRadioButton = new JRadioButton("\u7537");
+        editStudentSexManRadioButton = new JRadioButton("男");
 
-        editStudentSexWomanRadioButton = new JRadioButton("\u5973");
+        editStudentSexWomanRadioButton = new JRadioButton("女");
         genderButtonGroup = new ButtonGroup();
         genderButtonGroup.add(editStudentSexManRadioButton);
         genderButtonGroup.add(editStudentSexWomanRadioButton);
 
-        JLabel lblNewLabel_4 = new JLabel("\u5B66\u751F\u5B66\u53F7");
+        JLabel lblNewLabel_4 = new JLabel("学生学号");
 
         editStudentIDtextField = new JTextField();
         editStudentIDtextField.setColumns(10);
 
-        JButton submitEditButton = new JButton("\u786E\u8BA4\u4FEE\u6539");
+        JButton submitEditButton = new JButton("确认修改");
         submitEditButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 submitEditAct(e);
             }
         });
 
-        JButton DeleteStudentButton = new JButton("\u5220\u9664\u5B66\u751F");
+        JButton DeleteStudentButton = new JButton("删除学生");
         DeleteStudentButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 deleteStudent(e);
             }
         });
 
-        JLabel lblNewLabel_5 = new JLabel("\u6C11\u65CF:");
+        JLabel lblNewLabel_5 = new JLabel("民族:");
 
         editStudentnationalitytextField = new JTextField();
         editStudentnationalitytextField.setColumns(10);
 
-        JLabel lblNewLabel_6 = new JLabel("\u653F\u6CBB\u9762\u8C8C:");
+        JLabel lblNewLabel_6 = new JLabel("政治面貌:");
 
-        JLabel lblNewLabel_7 = new JLabel("\u804C\u52A1:");
+        JLabel lblNewLabel_7 = new JLabel("职务:");
 
         editStudentPoliticalStaustextField = new JTextField();
         editStudentPoliticalStaustextField.setColumns(10);
@@ -231,7 +218,7 @@ public class StudentManagerFrm extends JInternalFrame {
                 new Object[][] {
                 },
                 new String[] {
-                        "\u5B66\u751F\u5B66\u53F7", "\u5B66\u751F\u59D3\u540D", "\u5E74\u9F84", "\u6027\u522B", "\u6C11\u65CF", "\u653F\u6CBB\u9762\u8C8C", "\u804C\u52A1", "\u6559\u5E08\u7F16\u53F7"
+                        "学生学号", "学生姓名", "年龄", "性别", "民族", "政治面貌", "职务", "教师编号"
                 }
         ) {
             boolean[] columnEditables = new boolean[] {

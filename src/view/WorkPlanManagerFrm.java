@@ -64,6 +64,7 @@ public class WorkPlanManagerFrm extends JInternalFrame {
 
         editTeacherIdTextField = new JTextField();
         editTeacherIdTextField.setColumns(10);
+        editTeacherIdTextField.setEditable(false);
 
         JButton submitButton = new JButton("确认修改");
         submitButton.addActionListener(new ActionListener() {

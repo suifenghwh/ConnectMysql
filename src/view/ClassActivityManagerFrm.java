@@ -38,6 +38,7 @@ public class ClassActivityManagerFrm extends JInternalFrame {
 
         editActivityIDTextField = new JTextField();
         editActivityIDTextField.setColumns(10);
+        editActivityIDTextField.setEditable(false);
 
         JLabel lblNewLabel_2 = new JLabel("活动名称:");
 

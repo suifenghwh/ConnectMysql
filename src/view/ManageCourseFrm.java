@@ -44,46 +44,27 @@ public class ManageCourseFrm extends JInternalFrame {
     private JButton submitEditButton;
     List<Teachers> teacherList = new ArrayList<Teachers>();
 
-    /**
-     * Launch the application.
-     */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					ManageCourseFrm frame = new ManageCourseFrm();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
-    /**
-     * Create the frame.
-     */
     public ManageCourseFrm() {
         setClosable(true);
         setIconifiable(true);
-        setTitle("\u8BFE\u7A0B\u4FE1\u606F\u7BA1\u7406");
+        setTitle("课程信息管理");
         setBounds(100, 100, 583, 596);
 
-        JLabel lblNewLabel = new JLabel("\u8BFE\u7A0B\u540D\u79F0");
+        JLabel lblNewLabel = new JLabel("课程名称");
 
         SearchCourseNametextField = new JTextField();
         SearchCourseNametextField.setColumns(10);
 
-        JLabel lblNewLabel_1 = new JLabel("\u6388\u8BFE\u8001\u5E08");
+        JLabel lblNewLabel_1 = new JLabel("授课老师");
 
         SearchTeachercomboBox = new JComboBox();
 
         JScrollPane scrollPane = new JScrollPane();
 
         JPanel panel = new JPanel();
-        panel.setBorder(new TitledBorder(null, "\u7F16\u8F91\u8BFE\u7A0B\u4FE1\u606F", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+        panel.setBorder(new TitledBorder(null, "编辑课程信息", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
-        JButton SearchButton = new JButton("\u67E5\u8BE2");
+        JButton SearchButton = new JButton("查询");
         SearchButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 searchCourse(e);
@@ -129,26 +110,27 @@ public class ManageCourseFrm extends JInternalFrame {
                                 .addContainerGap(53, Short.MAX_VALUE))
         );
 
-        JLabel lblNewLabel_2 = new JLabel("\u8BFE\u7A0B\u7F16\u53F7");
+        JLabel lblNewLabel_2 = new JLabel("课程编号");
 
         editCourseIDtextField = new JTextField();
         editCourseIDtextField.setColumns(10);
+        editCourseIDtextField.setEditable(false);
 
-        JLabel lblNewLabel_3 = new JLabel("\u8BFE\u7A0B\u540D\u79F0");
+        JLabel lblNewLabel_3 = new JLabel("课程名称");
 
         editCourseNametextField = new JTextField();
         editCourseNametextField.setColumns(10);
 
-        JLabel lblNewLabel_4 = new JLabel("\u6388\u8BFE\u8001\u5E08");
+        JLabel lblNewLabel_4 = new JLabel("授课老师");
 
         editCourseTeachercomboBox = new JComboBox();
 
-        JLabel lblNewLabel_5 = new JLabel("\u4E0A\u8BFE\u65F6\u95F4");
+        JLabel lblNewLabel_5 = new JLabel("上课时间");
 
         editClassTimecomboBox = new JComboBox();
-        editClassTimecomboBox.setModel(new DefaultComboBoxModel(new String[] {"\u5468\u4E00", "\u5468\u4E8C", "\u5468\u4E09", "\u5468\u56DB", "\u5468\u4E94"}));
+        editClassTimecomboBox.setModel(new DefaultComboBoxModel(new String[] {"周一", "周二", "周三", "周四", "周五"}));
 
-        submitEditButton = new JButton("\u786E\u8BA4\u4FEE\u6539");
+        submitEditButton = new JButton("确认修改");
         submitEditButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 editCourseSubmit(ae);
@@ -156,7 +138,7 @@ public class ManageCourseFrm extends JInternalFrame {
         });
 
 
-        JButton deleteCourseButton = new JButton("\u5220\u9664\u8BFE\u7A0B");
+        JButton deleteCourseButton = new JButton("删除课程");
         deleteCourseButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 deleteCourse(e);
@@ -226,7 +208,7 @@ public class ManageCourseFrm extends JInternalFrame {
                 new Object[][] {
                 },
                 new String[] {
-                        "\u8BFE\u7A0B\u7F16\u53F7", "\u8BFE\u7A0B\u540D\u79F0", "\u4E0A\u8BFE\u65F6\u95F4", "\u6559\u5E08\u540D\u5B57", "\u6559\u5E08\u7F16\u53F7"
+                        "课程编号", "课程名称", "上课时间", "教师姓名", "教师编号"
                 }
         ) {
             boolean[] columnEditables = new boolean[] {

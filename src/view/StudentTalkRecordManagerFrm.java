@@ -54,6 +54,7 @@ public class StudentTalkRecordManagerFrm extends JInternalFrame {
 
         editStudentIdTextField = new JTextField();
         editStudentIdTextField.setColumns(10);
+        editStudentIdTextField.setEditable(false);
 
         JLabel lblNewLabel_3 = new JLabel("谈话内容:");
 

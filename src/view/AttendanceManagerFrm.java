@@ -57,6 +57,7 @@ public class AttendanceManagerFrm extends JInternalFrame {
 
         editAttendanceIDTextField = new JTextField();
         editAttendanceIDTextField.setColumns(10);
+        editAttendanceIDTextField.setEditable(false); // 添加这一行使其只读
 
         JLabel lblNewLabel_3 = new JLabel("是否缺勤:");
 

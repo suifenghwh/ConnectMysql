@@ -22,25 +22,7 @@ public class ClassManageFrm extends JInternalFrame {
     private JTextField ClassNametextField;
     private JTable ClassListTable;
 
-    /**
-     * Launch the application.
-     */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					ClassManageFrm frame = new ClassManageFrm();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 
-    /**
-     * Create the frame.
-     */
     public ClassManageFrm() {
         setClosable(true);
         setIconifiable(true);
