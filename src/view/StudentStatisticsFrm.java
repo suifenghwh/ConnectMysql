@@ -4,10 +4,13 @@ import Dao.StudentDao;
 import model.StudentBaseInfo;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.util.Enumeration;
 import java.util.List;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
 
 public class StudentStatisticsFrm extends JInternalFrame {
     private final StudentDao studentDao;
@@ -27,12 +30,11 @@ public class StudentStatisticsFrm extends JInternalFrame {
         panel.setLayout(new BorderLayout());
         getContentPane().add(panel);
 
-        // 创建表格模型
-        DefaultTableModel tableModel = new DefaultTableModel();
-        JTable table = new JTable(tableModel);
+        // 创建饼图面板
+        JPanel chartPanel = new JPanel(new BorderLayout());
 
-        // 添加表格到面板
-        panel.add(new JScrollPane(table), BorderLayout.CENTER);
+        // 添加饼图面板到主面板
+        panel.add(chartPanel, BorderLayout.CENTER);
 
         // 创建单选按钮组
         radioButtonGroup = new ButtonGroup();
@@ -67,37 +69,44 @@ public class StudentStatisticsFrm extends JInternalFrame {
             // 获取统计数据
             List<StudentBaseInfo> studentList = studentDao.getStudentList(new StudentBaseInfo());
 
-            // 清空表格
-            tableModel.setRowCount(0);
+            // 创建饼图数据集
+            DefaultPieDataset dataset = new DefaultPieDataset();
 
-            // 统计并添加数据到表格
-            int count = 0;
+            // 统计数据
             for (StudentBaseInfo student : studentList) {
                 switch (selectedOption) {
                     case "年龄":
-                        tableModel.addRow(new Object[]{"年龄：" + student.getAge(), ""});
-                        count++;
+                        dataset.setValue("年龄：" + student.getAge(), 1);
                         break;
                     case "性别":
-                        tableModel.addRow(new Object[]{"性别：" + student.getGender(), ""});
-                        count++;
+                        dataset.setValue("性别：" + student.getGender(), 1);
                         break;
                     case "民族":
-                        tableModel.addRow(new Object[]{"民族：" + student.getNationality(), ""});
-                        count++;
+                        dataset.setValue("民族：" + student.getNationality(), 1);
                         break;
                     case "政治面貌":
-                        tableModel.addRow(new Object[]{"政治面貌：" + student.getPoliticalStatus(), ""});
-                        count++;
+                        dataset.setValue("政治面貌：" + student.getPoliticalStatus(), 1);
                         break;
                     case "职务":
-                        tableModel.addRow(new Object[]{"职务：" + student.getPosition(), ""});
-                        count++;
+                        dataset.setValue("职务：" + student.getPosition(), 1);
                         break;
                 }
             }
-            tableModel.addRow(new Object[]{"总人数", count});
-            tableModel.addRow(new Object[]{"", ""});
+
+            // 创建饼图
+            JFreeChart chart = ChartFactory.createPieChart(
+                    selectedOption + "统计图", // 饼图标题
+                    dataset, // 数据集
+                    true, // 是否显示图例
+                    true, // 是否生成工具提示
+                    false // 是否生成URL链接
+            );
+
+            // 创建饼图面板并添加到主面板
+            ChartPanel chartPanel1 = new ChartPanel(chart);
+            chartPanel.removeAll();
+            chartPanel.add(chartPanel1, BorderLayout.CENTER);
+            chartPanel.validate();
         });
 
         // 添加按钮到面板
@@ -108,7 +117,7 @@ public class StudentStatisticsFrm extends JInternalFrame {
     }
 
     private String getSelectedRadioButtonText() {
-        for (Enumeration<AbstractButton> buttons = radioButtonGroup.getElements(); buttons.hasMoreElements();) {
+        for (Enumeration<AbstractButton> buttons = radioButtonGroup.getElements(); buttons.hasMoreElements(); ) {
             AbstractButton button = buttons.nextElement();
             if (button.isSelected()) {
                 return button.getText();
@@ -117,4 +126,3 @@ public class StudentStatisticsFrm extends JInternalFrame {
         return "";
     }
 }
-
