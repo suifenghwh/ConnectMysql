@@ -135,7 +135,7 @@ public class StudentStatisticsFrm extends JInternalFrame {
                     true, // 是否生成工具提示
                     false // 是否生成URL链接
             );
-            
+
             // 获取图例对象
             LegendTitle legend = chart.getLegend();
 
