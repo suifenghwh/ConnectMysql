@@ -12,6 +12,7 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PiePlot;
+import org.jfree.chart.title.LegendTitle;
 import org.jfree.data.general.DefaultPieDataset;
 
 public class StudentStatisticsFrm extends JInternalFrame {
@@ -78,22 +79,53 @@ public class StudentStatisticsFrm extends JInternalFrame {
             for (StudentBaseInfo student : studentList) {
                 switch (selectedOption) {
                     case "年龄":
-                        dataset.setValue("年龄：" + student.getAge(), 1);
+                        int age = student.getAge();
+                        String ageKey = "年龄：" + age;
+                        if (dataset.getKeys().contains(ageKey)) {
+                            dataset.setValue(ageKey, dataset.getValue(ageKey).intValue() + 1);
+                        } else {
+                            dataset.setValue(ageKey, 1);
+                        }
                         break;
                     case "性别":
-                        dataset.setValue("性别：" + student.getGender(), 1);
+                        String gender = student.getGender();
+                        String genderKey = "性别：" + gender;
+                        if (dataset.getKeys().contains(genderKey)) {
+                            dataset.setValue(genderKey, dataset.getValue(genderKey).intValue() + 1);
+                        } else {
+                            dataset.setValue(genderKey, 1);
+                        }
                         break;
                     case "民族":
-                        dataset.setValue("民族：" + student.getNationality(), 1);
+                        String nationality = student.getNationality();
+                        String nationalityKey = "民族：" + nationality;
+                        if (dataset.getKeys().contains(nationalityKey)) {
+                            dataset.setValue(nationalityKey, dataset.getValue(nationalityKey).intValue() + 1);
+                        } else {
+                            dataset.setValue(nationalityKey, 1);
+                        }
                         break;
                     case "政治面貌":
-                        dataset.setValue("政治面貌：" + student.getPoliticalStatus(), 1);
+                        String politicalStatus = student.getPoliticalStatus();
+                        String politicalStatusKey = "政治面貌：" + politicalStatus;
+                        if (dataset.getKeys().contains(politicalStatusKey)) {
+                            dataset.setValue(politicalStatusKey, dataset.getValue(politicalStatusKey).intValue() + 1);
+                        } else {
+                            dataset.setValue(politicalStatusKey, 1);
+                        }
                         break;
                     case "职务":
-                        dataset.setValue("职务：" + student.getPosition(), 1);
+                        String position = student.getPosition();
+                        String positionKey = "职务：" + position;
+                        if (dataset.getKeys().contains(positionKey)) {
+                            dataset.setValue(positionKey, dataset.getValue(positionKey).intValue() + 1);
+                        } else {
+                            dataset.setValue(positionKey, 1);
+                        }
                         break;
                 }
             }
+
 
             // 创建饼图
             JFreeChart chart = ChartFactory.createPieChart(
@@ -103,15 +135,21 @@ public class StudentStatisticsFrm extends JInternalFrame {
                     true, // 是否生成工具提示
                     false // 是否生成URL链接
             );
+            
+            // 获取图例对象
+            LegendTitle legend = chart.getLegend();
+
+            // 设置图例项的字体
+            legend.setItemFont(new Font("新宋体", Font.PLAIN, 12)); // 设置字体
 
             // 设置标题字体
-            chart.getTitle().setFont(new Font("宋体", Font.BOLD, 18));
+            chart.getTitle().setFont(new Font("新宋体", Font.BOLD, 18));
 
             // 获取绘图区域对象
             PiePlot plot = (PiePlot) chart.getPlot();
 
             // 设置标签字体
-            plot.setLabelFont(new Font("宋体", Font.PLAIN, 12));
+            plot.setLabelFont(new Font("新宋体", Font.PLAIN, 12));
 
             // 创建饼图面板并添加到主面板
             ChartPanel chartPanel1 = new ChartPanel(chart);
