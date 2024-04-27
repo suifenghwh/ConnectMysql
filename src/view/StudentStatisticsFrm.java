@@ -126,7 +126,6 @@ public class StudentStatisticsFrm extends JInternalFrame {
                 }
             }
 
-
             // 创建饼图
             JFreeChart chart = ChartFactory.createPieChart(
                     selectedOption + "统计图", // 饼图标题
