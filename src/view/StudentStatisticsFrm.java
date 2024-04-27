@@ -5,11 +5,13 @@ import model.StudentBaseInfo;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Enumeration;
 import java.util.List;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot;
 import org.jfree.data.general.DefaultPieDataset;
 
 public class StudentStatisticsFrm extends JInternalFrame {
@@ -102,6 +104,15 @@ public class StudentStatisticsFrm extends JInternalFrame {
                     false // 是否生成URL链接
             );
 
+            // 设置标题字体
+            chart.getTitle().setFont(new Font("宋体", Font.BOLD, 18));
+
+            // 获取绘图区域对象
+            PiePlot plot = (PiePlot) chart.getPlot();
+
+            // 设置标签字体
+            plot.setLabelFont(new Font("宋体", Font.PLAIN, 12));
+
             // 创建饼图面板并添加到主面板
             ChartPanel chartPanel1 = new ChartPanel(chart);
             chartPanel.removeAll();
@@ -126,3 +137,4 @@ public class StudentStatisticsFrm extends JInternalFrame {
         return "";
     }
 }
+
